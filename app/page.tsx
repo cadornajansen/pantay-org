@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Users, HeartHandshake, Target, Eye } from "lucide-react";
@@ -23,6 +24,15 @@ import {
   Music2, // TikTok icon alternative (lucide has no official TikTok)
   Mail,
 } from "lucide-react";
+import { motion } from "motion/react";
+
+type SkeletonImageProps = {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+};
+
 
 const sponsors = [
   { name: "Sangguniang Kabataan", src: "/logos/6.png" },
@@ -79,6 +89,13 @@ const beneficiaries = [
     icon: HeartHandshake,
   },
 ];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: "easeOut" },
+  viewport: { once: true },
+};
 
 export default function HomePage() {
   return (
@@ -196,12 +213,12 @@ export default function HomePage() {
           </div>
 
           {/* RIGHT: IMAGE */}
-          <div className="relative mt-8">
+          <div className="relative mt-8 hidden lg:block">
             <div className="absolute -inset-4 rounded-3xl bg-beige-200/40 blur-2xl" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl">
               <Image
                 src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1600&auto=format&fit=crop"
-                alt="Community and youth empowerment"
+                alt="Community and youth empowerment" 
                 fill
                 className="object-cover"
                 priority
@@ -227,15 +244,15 @@ export default function HomePage() {
           </div>
           {/* LEFT — TEXT */}
           <div>
-            <p className="text-xs tracking-widest uppercase text-neutral-500">
+            <motion.p {...fadeUp}  className="text-xs tracking-widest uppercase text-neutral-500">
               About Us
-            </p>
+            </motion.p>
 
-            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-neutral-900 leading-tight">
+            <motion.h2 {...fadeUp}  className="mt-3 text-3xl md:text-4xl font-extrabold text-neutral-900 leading-tight">
               Our Story and Advocacy
-            </h2>
+            </motion.h2>
 
-            <p className="mt-5 text-neutral-600  max-w-xl">
+            <motion.p {...fadeUp}  className="mt-5 text-neutral-600  max-w-xl">
               <span className="font-semibold text-neutral-900">
                 P.A.N.T.A.Y
               </span>{" "}
@@ -245,7 +262,7 @@ export default function HomePage() {
               community volunteers, the organization was created in response to
               the growing need to strengthen human rights awareness and civic
               engagement among Filipino youth.
-            </p>
+            </motion.p>
 
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 mt-8">
               {/* MISSION */}
