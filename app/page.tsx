@@ -211,7 +211,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* ABOUT / OUR STORY */}
-      <section id="about" className="bg-beige py-20">
+      <section id="about" className="bg-beige py-10">
         <div className="mx-auto max-w-6xl px-5 grid lg:grid-cols-2 gap-14 items-center">
           <div className="relative mt-4">
             <div className="absolute -inset-4 rounded-3xl " />
